@@ -1,0 +1,90 @@
+<style>
+.imgs {
+width:500px;
+height:500px;
+}
+#imgleft {
+margin-left:0px;
+}
+#imgright {
+margin-left:-250px;
+}
+.partsbox {
+width:500px;
+height:500px;
+display:block;
+overflow:hidden;
+background:transparent;
+border:0px solid black;
+border-radius:0;
+margin-top:15%;
+}
+.leftpart {
+width:250px;
+height:500px;
+display:inline-block;
+overflow:hidden;
+margin-right:-4px;
+float:left;
+}
+.rightpart
+{
+width:250px;
+height:500px;
+display:inline-block;
+overflow:hidden;
+margin-left:-4px;
+float:right;
+}
+.touchlayer
+{
+width:500px;
+height:500px;
+display:block;
+background:transparent;
+margin-top:0px;
+position:absolute;
+pointer:none;
+}
+</style>
+<script src="jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+var imgcounter=1;
+$(".touchlayer").click(function () {
+var imgswid=$(".imgs").width();
+imgswid=(imgswid/2)*(-1);
+$(".leftpart").animate({
+marginLeft: imgswid
+},{duration:1500,easing: "linear"});
+$(".rightpart").animate({
+marginRight: imgswid
+},{duration:1500,easing: "linear"});
+setTimeout(imgchange,1750);
+function imgchange()
+{
+document.getElementById("imgleft").src="img"+imgcounter+".png";
+document.getElementById("imgright").src="img"+imgcounter+".png";
+$(".leftpart").animate({
+marginLeft:0
+},{duration:1000,easing: "linear"});
+$(".rightpart").animate({
+marginRight:0
+},{duration:1000,easing: "linear"});
+imgcounter++;
+};
+});
+});
+</script>
+
+<body >
+<center>
+<div class="partsbox">
+<div class="parts leftpart" id="leftpart">
+<img src="img1.png" id="imgleft" class="imgs imgleft" /></div>
+<div class="parts rightpart" id="rightpart">
+<img src="img1.png" id="imgright" class="imgs imgright" /></div>
+<div class="touchlayer" id="touchlayer"></div>
+</div>
+</center>
+<body>
